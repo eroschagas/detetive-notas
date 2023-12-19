@@ -2,7 +2,7 @@
 	<div>
 		<ConfirmModal
 			v-if="clearModal"
-			text="Tem certeza que deseja apagar tudo?"
+			text="Tem certeza que deseja limpar a ficha?"
 			@confirm="clearData"
 			@exit="exitModalClear"
 		/>
@@ -13,8 +13,8 @@
 			@exit="exitModalReset"
 		/>
 		<div class="button-line__container">
-			<div @click="openModalClear" class="clear-button">Apagar Tudo</div>
-			<div @click="openModalReset" class="clear-button">Reiniciar</div>
+			<div @click="openModalClear" class="clear-button">Limpar</div>
+			<div @click="openModalReset" class="clear-button">Apagar Tudo</div>
 		</div>
 		<StandardSheet>
 			<BlockSheet

@@ -1,5 +1,6 @@
 <template>
 	<div class="main-menu__container">
+		<p>Jogo:</p>
 		<MenuItem v-for="(item, index) in routes" :key="index" :item="item" />
 	</div>
 </template>

@@ -152,9 +152,10 @@
 			display: flex;
 			align-items: center;
 			gap: 4px;
-			width: 130px;
+			width: 100%;
 			> div {
 				display: flex;
+				max-width: 135px;
 				overflow: hidden;
 				p {
 					font-size: 18px;

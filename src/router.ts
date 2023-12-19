@@ -6,12 +6,12 @@ import CustomSheet from "./components/CustomSheet.vue";
 export const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/",
-		name: "Clássica",
+		name: "Clássico",
 		component: ClassicSheet,
 	},
 	{
 		path: "/customizada",
-		name: "Customizada",
+		name: "Customizado",
 		component: CustomSheet,
 	},
 ];

@@ -35,4 +35,13 @@
 			width: 100%;
 		}
 	}
+
+	@media (min-width: 1000px) {
+		.sheet__container {
+			.sheet__slot {
+				flex-direction: row;
+				gap: 24px;
+			}
+		}
+	}
 </style>

@@ -99,6 +99,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		min-width: 304px;
 		gap: 8px;
 		.block-sheet__title {
 			display: flex;

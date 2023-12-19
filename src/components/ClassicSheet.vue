@@ -2,11 +2,11 @@
 	<div>
 		<ConfirmModal
 			v-if="clearModal"
-			text="Tem certeza que deseja apagar tudo?"
+			text="Tem certeza que deseja limpar a ficha?"
 			@confirm="clearData"
 			@exit="exitModal"
 		/>
-		<div @click="openModal" class="clear-button">Apagar Tudo</div>
+		<div @click="openModal" class="clear-button">Limpar</div>
 		<StandardSheet>
 			<BlockSheet
 				title="Suspeitos"
