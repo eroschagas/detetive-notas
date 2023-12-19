@@ -3,11 +3,13 @@
 		<MainMenu />
 		<div class="router-view__container">
 			<router-view />
+			<MainFooter />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+	import MainFooter from "./components/MainFooter.vue";
 	import MainMenu from "./components/MainMenu.vue";
 </script>
 
@@ -21,10 +23,12 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin: 8px 0;
-			padding: 0 16px;
-			overflow-y: scroll;
+			justify-content: space-between;
+			margin-top: 8px;
+			overflow-y: auto;
 			height: calc(100% - 40px);
+			width: 100%;
+			gap: 8px;
 		}
 	}
 </style>

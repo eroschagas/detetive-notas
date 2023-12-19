@@ -1,6 +1,34 @@
 <template>
-	<div class="block-content__container">
-		<div class="block-content__name">
+	<div v-if="editing" class="block-content__input">
+		<input
+			ref="InputContent"
+			@keyup.enter="inputConfirm"
+			@keyup.esc="inputClose"
+			@keyup.delete="inputRemove"
+			v-model="inputModel"
+			type="text"
+		/>
+		<icon
+			class="block-content__input-action"
+			@click="inputConfirm"
+			size="20"
+			icon="mdi-check"
+		/>
+		<icon
+			class="block-content__input-action"
+			@click="inputClose"
+			size="20"
+			icon="mdi-close"
+		/>
+		<icon
+			class="block-content__input-action"
+			@click="inputRemove"
+			size="20"
+			icon="mdi-delete-outline"
+		/>
+	</div>
+	<div v-else class="block-content__container">
+		<div @click="edit" class="block-content__name">
 			<div>
 				<p>
 					<i>{{ props.content.prefix }}</i>
@@ -41,13 +69,19 @@
 </template>
 
 <script setup lang="ts">
-	import { ref } from "vue";
+	import { ref, nextTick } from "vue";
 	import { SheetContent } from "../model/SheetContent";
 
 	const props = defineProps({
 		content: {
 			type: Object as () => SheetContent,
 			required: true,
+		},
+		remove: {
+			type: Function,
+		},
+		custom: {
+			type: Boolean,
 		},
 	});
 
@@ -66,9 +100,51 @@
 		}
 		props.content.selected = icon;
 	};
+
+	const editing = ref<boolean>(false);
+	const inputModel = ref<string>();
+	const InputContent = ref();
+	const edit = () => {
+		if (!props.custom) return;
+		inputModel.value = props.content.name;
+		editing.value = true;
+		nextTick(() => {
+			InputContent.value.focus();
+		});
+	};
+	const inputClose = () => {
+		editing.value = false;
+	};
+	const inputConfirm = () => {
+		if (inputModel.value) {
+			props.content.name = inputModel.value;
+		}
+		editing.value = false;
+	};
+	const inputRemove = () => {
+		editing.value = false;
+		if (props.remove) {
+			props.remove(props.content);
+		}
+	};
 </script>
 
 <style scoped lang="scss">
+	.block-content__input {
+		width: 100%;
+		height: 26px;
+		display: flex;
+		gap: 8px;
+		input {
+			width: 100%;
+			height: 100%;
+			padding: 8px;
+		}
+		.block-content__input-action {
+			cursor: pointer;
+		}
+	}
+
 	.block-content__container {
 		display: flex;
 		gap: 12px;
@@ -76,11 +152,14 @@
 			display: flex;
 			align-items: center;
 			gap: 4px;
-			min-width: 130px;
+			width: 130px;
 			> div {
 				display: flex;
+				overflow: hidden;
 				p {
 					font-size: 18px;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 			}
 			.block-content__color {

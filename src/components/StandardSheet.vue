@@ -22,6 +22,7 @@
 		flex-direction: column;
 		gap: 8px;
 		align-items: center;
+		min-width: 320px;
 		h1 {
 			font-size: 22px;
 			letter-spacing: 8px;
@@ -31,6 +32,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
+			width: 100%;
 		}
 	}
 </style>
